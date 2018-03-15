@@ -1,5 +1,5 @@
 
-var auth = require('rpc-multiauth');
+var auth = require('rpc-multiauth').client;
 var path = require('path');
 var fs = require('fs');
 var websocket = require('websocket-stream');
@@ -55,8 +55,8 @@ module.exports = function(url, opts, callback) {
     if(!opts.username) return callback(null, done, remote);
 
     auth.login(remote, {
-      username: account.username,
-      password: account.password
+      username: opts.username,
+      password: opts.password
     }, function(err, token, userData) {
       if(err) {
         return callback(err);
